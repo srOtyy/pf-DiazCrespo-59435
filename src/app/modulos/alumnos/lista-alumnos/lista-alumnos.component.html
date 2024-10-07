@@ -1,0 +1,40 @@
+<app-navbar></app-navbar>
+<button mat-icon-button class="boton-add" (click)="openDialog(0,true)">
+  <mat-icon>add</mat-icon>
+</button>
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
+
+    <ng-container matColumnDef="No">
+      <th mat-header-cell *matHeaderCellDef appFormato> No. </th>
+      <td mat-cell *matCellDef="let element"> {{posicionAlumno(element.id,1)}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="nombre-completo" class="td-nombre">
+      <th mat-header-cell *matHeaderCellDef appFormato> Nombre completo </th>
+      <td mat-cell *matCellDef="let element"> {{element | nombreCompleto}} </td>
+    </ng-container>
+  
+
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef appFormato> email </th>
+      <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="id" >
+      <th mat-header-cell *matHeaderCellDef appFormato> id </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="botones" >
+        <th mat-header-cell *matHeaderCellDef appFormato> editar </th>
+        <td mat-cell *matCellDef="let element">  
+            <button mat-icon-button (click)="openDialog(posicionAlumno(element.id,0),false)">
+                <mat-icon > edit </mat-icon>
+            </button>
+        </td>
+      </ng-container>
+     
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  
